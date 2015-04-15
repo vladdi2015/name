@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{ margin:0px; background:#999; }
+
+<script>
+function toggleNavPanel(x){
+    var panel = document.getElementById(x), navarrow = document.getElementById("navarrow"), maxH="300px";
+    if(panel.style.height == maxH){
+        panel.style.height = "0px";
+        navarrow.innerHTML = "&#9662;";
+    } else {
+        panel.style.height = maxH;
+        navarrow.innerHTML = "&#9652;";
+    }
+}
+</script>
+<style>
+body {
+    font-family: sans-serif;
+    background: #333;
+    color: #eee;
+}
+
+a {
+    text-decoration: none;
+    color: hsl(206, 80%, 50%);
+}
+
+.roll {
+    display: inline-block;
+    overflow: hidden;
+
+    vertical-align: top;
+
+    -webkit-perspective: 400px;
+       -moz-perspective: 400px;
+
+    -webkit-perspective-origin: 50% 50%;
+       -moz-perspective-origin: 50% 50%;
+}
+.roll span {
+    display: block;
+    position: relative;
+    padding: 0 2px;
+
+    -webkit-transition: all 400ms ease;
+       -moz-transition: all 400ms ease;
+    
+    -webkit-transform-origin: 50% 0%;
+       -moz-transform-origin: 50% 0%;
+    
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+}
+    .roll:hover span {
+        background: #111;
+
+        -webkit-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+           -moz-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+    }
+.roll span:after {
+    content: attr(data-title);
+
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 2px;
+
+    color: #fff;
+    background: hsl(206, 80%, 30%);
+
+    -webkit-transform-origin: 50% 0%;
+       -moz-transform-origin: 50% 0%;
+
+    -webkit-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+       -moz-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+}
+.flip3D{ width:240px; height:200px; margin:70px; float:left;text-align:center;}
+.flip3D > .ffront{
+	vertical-align: center;
+	position:absolute;
+	-webkit-transform: perspective( 600px ) rotateY( 0deg );
+	transform: perspective( 600px ) rotateY( 0deg );
+	background:#FC0;  width:350px; height:250px; border-radius: 7px;
+
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	transition: -webkit-transform .5s linear 0s;
+	transition: transform .5s linear 0s;
+}
+.flip3D > .fback{
+	vertical-align: center;
+	position:absolute;
+	-webkit-transform: perspective( 600px ) rotateY( 180deg );
+	transform: perspective( 600px ) rotateY( 180deg );
+	background: #80BFFF; width:350px; height:250px; border-radius: 7px;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	transition: -webkit-transform .5s linear 0s;
+	transition: transform .5s linear 0s;
+}
+.flip3D:hover > .ffront{
+	-webkit-transform: perspective( 600px ) rotateY( -180deg );
+	transform: perspective( 600px ) rotateY( -180deg );
+}
+.flip3D:hover > .fback{
+	-webkit-transform: perspective( 600px ) rotateY( 0deg );
+	transform: perspective( 600px ) rotateY( 0deg );
+}
+
+
+
+.block-menu {
+ display: block;
+ background:#000;
+}
+
+.block-menu li {
+ display: inline-block;
+ padding: 4px;
+
+}
+
+.block-menu li a {
+ color: #fff;
+ display: block;
+ text-decoration: none;
+ font-family: 'Passion One', Arial, sans-serif;
+ font-smoothing: antialiased;
+ text-transform: uppercase;
+ overflow: visible;
+ line-height: 20px;
+ font-size: 24px;
+ padding: 15px 10px;
+
+}
+
+/* animation domination */
+.three-d {
+ perspective: 200px;
+ transition: all .07s linear;
+ position: relative;
+ cursor: pointer;
+}
+ /* complete the animation! */
+ .three-d:hover .three-d-box, 
+ .three-d:focus .three-d-box {
+ transform: translateZ(-25px) rotateX(-90deg);
+ }
+
+ 
+.three-d-box {
+ transition: all .3s ease-out;
+ transform: translatez(-25px);
+ transform-style: preserve-3d;
+ pointer-events: none;
+ position: absolute;
+ top: 0;
+ left: 0;
+ display: block;
+ width: 100%;
+ height: 100%;
+}
+ 
+.in-box {
+	
+	padding: left left ;
+	width:330px; height:230px;
+}
+
+ .three-d-box : hover {
+ background: #000;
+ }
+/* 
+ put the "front" and "back" elements into place with CSS transforms, 
+ specifically translation and translatez
+*/
+.front {
+ transform: rotatex(0deg) translatez(25px);
+ color: #ccc;
+ background:#550014;
+}
+
+.back {
+ transform: rotatex(90deg) translatez(25px);
+ color: #fff;
+ background: #aa0028;
+ 
+ }
+ 
+
+.front, .back {
+ display: block;
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ 
+ padding: 15px 10px;
+ pointer-events: none;
+ box-sizing: border-box;
+}
+</style>
+
+
+</head>
+<body>
+
+<ul class="block-menu">
+	<li><a href="page.html" class="three-d">
+		Home
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Home</span>
+			<span class="back">Home</span>
+		</span>
+	</a></li>
+	<li><a href="Images.html" class="three-d">
+		Images
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Images</span>
+			<span class="back">Images</span>
+		</span>
+	</a></li>
+	<li><a href="Accounts.html" class="three-d">
+		Accounts
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Accounts</span>
+			<span class="back">Accounts</span>
+		</span>
+	</a></li>
+	<li><a href="Contact.html" class="three-d">
+		Contact
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Contact</span>
+			<span class="back">Contact</span>
+		</span>
+	</a></li>
+	<!-- more items here -->
+</ul>
+<div id="contet_layer">
+<div class="flip3D">
+  <div class="fback"><img class="in-box" src="http://programingro.ucoz.ro/_si/0/s09997582.jpg"></div>
+  <div class="ffront">Image 1</div>
+</div>
+<div class="flip3D">
+  <div class="fback">Box 2 - Back</div>
+  <div class="ffront">Box 2 - Front</div>
+</div>
+<div class="flip3D">
+  <div class="fback">Box 3 - Back</div>
+  <div class="ffront">Box 3 - Front</div>
+</div>
+</div>
+</body>  
+</html>
